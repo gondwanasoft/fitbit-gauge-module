@@ -1,9 +1,9 @@
 import clock from "clock";
-import Gauge from "./gauge/gauge.js";
+import gauge from "./gauge/gauge.js";
 
-const energyGauge = new Gauge("energyGauge", "energy.png", true);
-const heartGauge = new Gauge("heartGauge", "heart.png");
-const stepsGauge = new Gauge("stepsGauge", "steps.png");
+const energyGauge = gauge("energyGauge", "energy.png", true);
+const heartGauge = gauge("heartGauge", "heart.png");
+const stepsGauge = gauge("stepsGauge", "steps.png");
 
 energyGauge.goal = 2500;
 heartGauge.goal = 120;

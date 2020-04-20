@@ -1,89 +1,76 @@
 import document from "document";
 
-export default class Gauge {
-  private el: GraphicsElement;
-  private achievEl: GraphicsElement;
-  private goalEl: GraphicsElement;
-  private height: number;
-  private _achiev: number;
-  private _goal: number;
-  private _percent: boolean;
-  private _metGoal: boolean;
-  constructor(_id: string, _iconHref: string, _percent?: boolean) {
-    // Within this constructor function, declare variables that need to be distinct for every object.
-    // Put as little code as possible in here because it will be duplicated in every object.
-    this.el = document.getElementById(_id) as GraphicsElement;
-    this.achievEl = this.el.getElementById("achiev") as GraphicsElement;
-    this.goalEl = this.el.getElementById("goal") as GraphicsElement;
-    this.height = this.el.height - 2; // -2 because of baseline
-    this._achiev;
-    this._goal;
-    this._percent = _percent;
-    this._metGoal; // true if achiev >= goal
-    this._initialise(_iconHref);
-  }
-  // Define as much code as possible outside of the constructor function so that it isn't copied into every object.
-  // By convention, functions preceded with _ are not intended to be called from outside the object.
-  _initialise(iconHref: string) {
-    // Do extensive initialisation in this function.
-    // This is unnecessary in this trival example, but would be beneficial in a more complex case.
-    (this.el.getElementById("icon") as ImageElement).href = iconHref;
-  }
-  _redraw() {
-    if (this._goal === undefined || this._achiev === undefined) return;
-    if (!this._goal) {
-      this.achievEl.height = this._achiev ? this.height : 0;
-      this.achievEl.y = this.goalEl.height = 0;
-    } else if (this._achiev < this._goal) {
-      let height = (this._achiev / this._goal) * this.height;
-      this.achievEl.height = height;
-      this.achievEl.y = this.height - height;
-      if (this._metGoal) {
+export default (_id: string, _iconHref: string, _percent?: boolean) => {
+  // Within this constructor function, declare variables that need to be distinct for every object.
+  // Put as little code as possible in here because it will be duplicated in every object.
+  const el = document.getElementById(_id) as GraphicsElement;
+  const achievEl = el.getElementById("achiev") as GraphicsElement;
+  const goalEl = el.getElementById("goal") as GraphicsElement;
+  const height = el.height - 2; // -2 because of baseline
+  let _achiev;
+  let _goal;
+  let _metGoal; // true if achiev >= goal
+  (el.getElementById("icon") as ImageElement).href = _iconHref;
+
+  const _redraw = () => {
+    if (_goal === undefined || _achiev === undefined) return;
+    if (!_goal) {
+      achievEl.height = _achiev ? height : 0;
+      achievEl.y = goalEl.height = 0;
+    } else if (_achiev < _goal) {
+      let newHeight = (_achiev / _goal) * height;
+      achievEl.height = newHeight;
+      achievEl.y = height - newHeight;
+      if (_metGoal) {
         // no longer true
-        this._metGoal = false;
-        this.achievEl.style.fill = "#0000ff";
-        this.goalEl.y = 0;
-        this.goalEl.height = this.height;
+        _metGoal = false;
+        achievEl.style.fill = "#0000ff";
+        goalEl.y = 0;
+        goalEl.height = height;
       }
     } else {
-      // this._achiev >= this._goal
-      if (!this._metGoal && this._achiev) {
+      // _achiev >= _goal
+      if (!_metGoal && _achiev) {
         // now we have met goal
-        this._metGoal = true;
-        this.achievEl.y = 0;
-        this.achievEl.height = this.height;
-        this.achievEl.style.fill = "#00c000";
+        _metGoal = true;
+        achievEl.y = 0;
+        achievEl.height = height;
+        achievEl.style.fill = "#00c000";
       }
-      let height = this._goal ? (this._goal / this._achiev) * this.height : 0;
-      this.goalEl.height = height;
-      this.goalEl.y = this.height - height;
+      const goalElHeight = _goal ? (_goal / _achiev) * height : 0;
+      goalEl.height = goalElHeight;
+      goalEl.y = height - goalElHeight;
     }
-    if (this._percent) {
-      this.el.getElementById("label").text = this._goal
-        ? Math.round((this._achiev / this._goal) * 100) + "%"
+    if (_percent) {
+      el.getElementById("label").text = _goal
+        ? Math.round((_achiev / _goal) * 100) + "%"
         : "—%";
     } else {
-      this.el.getElementById("label").text = String(this._achiev);
+      el.getElementById("label").text = String(_achiev);
     }
-  }
-  setGoalColour(goalColour: string) {
-    this.goalEl.style.fill = goalColour;
-  }
+  };
 
-  set goal(val: number) {
-    if (this._goal === val) return;
-    this._goal = val;
-    this._redraw();
-  }
-  set achiev(val: number) {
-    if (this._achiev === val) return;
-    this._achiev = val;
-    this._redraw();
-  }
+  const setGoalColour = (goalColour: string) => {
+    goalEl.style.fill = goalColour;
+  };
 
-  set percent(val: boolean) {
-    if (this._percent === val) return;
-    this._percent = val;
-    this._redraw();
-  }
-}
+  return {
+    setGoalColour,
+    set goal(val: number) {
+      if (_goal === val) return;
+      _goal = val;
+      _redraw();
+    },
+    set achiev(val: number) {
+      if (_achiev === val) return;
+      _achiev = val;
+      _redraw();
+    },
+
+    set percent(val: boolean) {
+      if (_percent === val) return;
+      _percent = val;
+      _redraw();
+    },
+  };
+};
