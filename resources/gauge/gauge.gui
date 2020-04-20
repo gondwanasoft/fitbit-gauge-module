@@ -5,5 +5,10 @@
     <image id="icon" class="gauge-foreground" x="50%-16" y="10" width="32" height="32" />
     <text id="label" class="gauge-foreground" x="50%" y="100%-15" text-anchor="middle" text-length="8"/>
     <rect class="gauge-foreground" x="0" y="100%-2" width="100%" height="2" />  <!-- graph baseline -->
+
+    <!-- You can use module-specific resources in the resources/gauge directory; eg:
+    <image href="gauge/smile.png" />
+    -->
+
   </symbol>
 </defs>
