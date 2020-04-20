@@ -1,26 +1,24 @@
 {
-  "name": "code",
+  "name": "gauge-demo",
   "version": "0.1.0",
   "private": true,
   "license": "UNLICENSED",
   "devDependencies": {
-    "@fitbit/sdk": "4.2.0-pre.4",
+    "@fitbit/sdk": "4.1.0",
     "@fitbit/sdk-cli": "^1.7.1"
   },
   "fitbit": {
-    "appUUID": "d7aeae5b-3ade-4267-88f0-d8d91c7d8a14",
     "appType": "app",
-    "appDisplayName": "Zoned Out",
+    "appDisplayName": "Gauge Demo",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
-    "requestedPermissions": [
-      "access_activity"
-    ],
+    "requestedPermissions": [],
     "buildTargets": [
       "mira"
     ],
     "i18n": {},
-    "defaultLanguage": "en-US"
+    "defaultLanguage": "en-US",
+    "appUUID": "994976e1-b1d5-4310-8162-3aac94c02a43"
   },
   "scripts": {
     "build": "fitbit-build",
