@@ -61,28 +61,21 @@ export class Gauge {
   setGoalColour(goalColour) {
     this._goalEl.style.fill = goalColour;
   }
-}
 
-Object.defineProperty(Gauge.prototype, "goal", {
-  set: function set(val) {
+  set goal(val) {
     if (this._goal === val) return;
     this._goal = val;
     this._redraw();
-  },
-});
-
-Object.defineProperty(Gauge.prototype, "achiev", {
-  set: function set(val) {
+  }
+  set achiev(val) {
     if (this._achiev === val) return;
     this._achiev = val;
     this._redraw();
-  },
-});
+  }
 
-Object.defineProperty(Gauge.prototype, "percent", {
-  set: function set(val) {
+  set percent(val) {
     if (this._percent === val) return;
     this._percent = val;
     this._redraw();
-  },
-});
+  }
+}
