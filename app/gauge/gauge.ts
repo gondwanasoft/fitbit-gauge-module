@@ -1,12 +1,20 @@
 import document from "document";
 
 export class Gauge {
-  constructor(_id: string, _iconHref: string, _percent: boolean) {
+  private _el: GraphicsElement;
+  private _achievEl: GraphicsElement;
+  private _goalEl: GraphicsElement;
+  private _height: number;
+  private _achiev: number;
+  private _goal: number;
+  private _percent: boolean;
+  private _metGoal: boolean;
+  constructor(_id: string, _iconHref: string, _percent?: boolean) {
     // Within this constructor function, declare variables that need to be distinct for every object.
     // Put as little code as possible in here because it will be duplicated in every object.
-    this._el = document.getElementById(_id);
-    this._achievEl = this._el.getElementById("achiev");
-    this._goalEl = this._el.getElementById("goal");
+    this._el = document.getElementById(_id) as GraphicsElement;
+    this._achievEl = this._el.getElementById("achiev") as GraphicsElement;
+    this._goalEl = this._el.getElementById("goal") as GraphicsElement;
     this._height = this._el.height - 2; // -2 because of baseline
     this._achiev;
     this._goal;
@@ -19,7 +27,7 @@ export class Gauge {
   _initialise(iconHref: string) {
     // Do extensive initialisation in this function.
     // This is unnecessary in this trival example, but would be beneficial in a more complex case.
-    this._el.getElementById("icon").href = iconHref;
+    (this._el.getElementById("icon") as ImageElement).href = iconHref;
   }
   _redraw() {
     if (this._goal === undefined || this._achiev === undefined) return;
@@ -55,7 +63,7 @@ export class Gauge {
         ? Math.round((this._achiev / this._goal) * 100) + "%"
         : "—%";
     } else {
-      this._el.getElementById("label").text = this._achiev;
+      this._el.getElementById("label").text = String(this._achiev);
     }
   }
   setGoalColour(goalColour: string) {
