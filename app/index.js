@@ -11,6 +11,8 @@ stepsGauge.goal = 10000
 
 stepsGauge.percent = true   // setting percent using the property
 
+heartGauge.setGoalColour("orange")
+
 clock.granularity = "seconds"
 
 clock.ontick = function(evt) {

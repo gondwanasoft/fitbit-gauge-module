@@ -15,7 +15,8 @@ export function Gauge(_id, _iconHref, _percent) {
   this._initialise(_iconHref)
 }
 
-// Define as much code as possible outside of the constructor function so that it isn't copied into every object:
+// Define as much code as possible outside of the constructor function so that it isn't copied into every object.
+// By convention, functions preceded with _ are not intended to be called from outside the object.
 
 Gauge.prototype._initialise = function(iconHref) {
   // Do extensive initialisation in this function.
@@ -82,4 +83,8 @@ Gauge.prototype._redraw = function() {
   } else {
     this._el.getElementById('label').text = this._achiev
   }
+}
+
+Gauge.prototype.setGoalColour = function(goalColour) {
+  this._goalEl.style.fill = goalColour
 }
