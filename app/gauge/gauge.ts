@@ -1,10 +1,10 @@
 import document from "document";
 
-export class Gauge {
-  private _el: GraphicsElement;
-  private _achievEl: GraphicsElement;
-  private _goalEl: GraphicsElement;
-  private _height: number;
+export default class Gauge {
+  private el: GraphicsElement;
+  private achievEl: GraphicsElement;
+  private goalEl: GraphicsElement;
+  private height: number;
   private _achiev: number;
   private _goal: number;
   private _percent: boolean;
@@ -12,10 +12,10 @@ export class Gauge {
   constructor(_id: string, _iconHref: string, _percent?: boolean) {
     // Within this constructor function, declare variables that need to be distinct for every object.
     // Put as little code as possible in here because it will be duplicated in every object.
-    this._el = document.getElementById(_id) as GraphicsElement;
-    this._achievEl = this._el.getElementById("achiev") as GraphicsElement;
-    this._goalEl = this._el.getElementById("goal") as GraphicsElement;
-    this._height = this._el.height - 2; // -2 because of baseline
+    this.el = document.getElementById(_id) as GraphicsElement;
+    this.achievEl = this.el.getElementById("achiev") as GraphicsElement;
+    this.goalEl = this.el.getElementById("goal") as GraphicsElement;
+    this.height = this.el.height - 2; // -2 because of baseline
     this._achiev;
     this._goal;
     this._percent = _percent;
@@ -27,47 +27,47 @@ export class Gauge {
   _initialise(iconHref: string) {
     // Do extensive initialisation in this function.
     // This is unnecessary in this trival example, but would be beneficial in a more complex case.
-    (this._el.getElementById("icon") as ImageElement).href = iconHref;
+    (this.el.getElementById("icon") as ImageElement).href = iconHref;
   }
   _redraw() {
     if (this._goal === undefined || this._achiev === undefined) return;
     if (!this._goal) {
-      this._achievEl.height = this._achiev ? this._height : 0;
-      this._achievEl.y = this._goalEl.height = 0;
+      this.achievEl.height = this._achiev ? this.height : 0;
+      this.achievEl.y = this.goalEl.height = 0;
     } else if (this._achiev < this._goal) {
-      let height = (this._achiev / this._goal) * this._height;
-      this._achievEl.height = height;
-      this._achievEl.y = this._height - height;
+      let height = (this._achiev / this._goal) * this.height;
+      this.achievEl.height = height;
+      this.achievEl.y = this.height - height;
       if (this._metGoal) {
         // no longer true
         this._metGoal = false;
-        this._achievEl.style.fill = "#0000ff";
-        this._goalEl.y = 0;
-        this._goalEl.height = this._height;
+        this.achievEl.style.fill = "#0000ff";
+        this.goalEl.y = 0;
+        this.goalEl.height = this.height;
       }
     } else {
       // this._achiev >= this._goal
       if (!this._metGoal && this._achiev) {
         // now we have met goal
         this._metGoal = true;
-        this._achievEl.y = 0;
-        this._achievEl.height = this._height;
-        this._achievEl.style.fill = "#00c000";
+        this.achievEl.y = 0;
+        this.achievEl.height = this.height;
+        this.achievEl.style.fill = "#00c000";
       }
-      let height = this._goal ? (this._goal / this._achiev) * this._height : 0;
-      this._goalEl.height = height;
-      this._goalEl.y = this._height - height;
+      let height = this._goal ? (this._goal / this._achiev) * this.height : 0;
+      this.goalEl.height = height;
+      this.goalEl.y = this.height - height;
     }
     if (this._percent) {
-      this._el.getElementById("label").text = this._goal
+      this.el.getElementById("label").text = this._goal
         ? Math.round((this._achiev / this._goal) * 100) + "%"
         : "—%";
     } else {
-      this._el.getElementById("label").text = String(this._achiev);
+      this.el.getElementById("label").text = String(this._achiev);
     }
   }
   setGoalColour(goalColour: string) {
-    this._goalEl.style.fill = goalColour;
+    this.goalEl.style.fill = goalColour;
   }
 
   set goal(val: number) {
