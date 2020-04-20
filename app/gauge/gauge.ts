@@ -7,9 +7,9 @@ export default (_id: string, _iconHref: string, _percent?: boolean) => {
   const achievEl = el.getElementById("achiev") as GraphicsElement;
   const goalEl = el.getElementById("goal") as GraphicsElement;
   const height = el.height - 2; // -2 because of baseline
-  let _achiev;
-  let _goal;
-  let _metGoal; // true if achiev >= goal
+  let _achiev: number;
+  let _goal: number;
+  let _metGoal: boolean; // true if achiev >= goal
   (el.getElementById("icon") as ImageElement).href = _iconHref;
 
   const _redraw = () => {
