@@ -1,7 +1,7 @@
 import document from "document";
 
 export class Gauge {
-  constructor(_id, _iconHref, _percent) {
+  constructor(_id: string, _iconHref: string, _percent: boolean) {
     // Within this constructor function, declare variables that need to be distinct for every object.
     // Put as little code as possible in here because it will be duplicated in every object.
     this._el = document.getElementById(_id);
@@ -16,7 +16,7 @@ export class Gauge {
   }
   // Define as much code as possible outside of the constructor function so that it isn't copied into every object.
   // By convention, functions preceded with _ are not intended to be called from outside the object.
-  _initialise(iconHref) {
+  _initialise(iconHref: string) {
     // Do extensive initialisation in this function.
     // This is unnecessary in this trival example, but would be beneficial in a more complex case.
     this._el.getElementById("icon").href = iconHref;
@@ -58,22 +58,22 @@ export class Gauge {
       this._el.getElementById("label").text = this._achiev;
     }
   }
-  setGoalColour(goalColour) {
+  setGoalColour(goalColour: string) {
     this._goalEl.style.fill = goalColour;
   }
 
-  set goal(val) {
+  set goal(val: number) {
     if (this._goal === val) return;
     this._goal = val;
     this._redraw();
   }
-  set achiev(val) {
+  set achiev(val: number) {
     if (this._achiev === val) return;
     this._achiev = val;
     this._redraw();
   }
 
-  set percent(val) {
+  set percent(val: boolean) {
     if (this._percent === val) return;
     this._percent = val;
     this._redraw();
