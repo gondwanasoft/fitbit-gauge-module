@@ -2,8 +2,8 @@
   <symbol id="gauge">
     <rect id="achiev" x="2" width="50%-4" fill="#0000ff" />
     <rect id="goal" x="50%+2" y="0" width="50%-4" height="100%-2" fill="#808080" />
-    <image id="icon" x="50%-16" y="10" width="32" height="32" fill="#ffffff"/>
-    <text id="label" fill="#ffffff" x="50%" y="100%-15" text-anchor="middle" text-length="8"/>
-    <rect x="0" y="100%-2" width="100%" height="2" fill="#ffffff" />
+    <image id="icon" class="gauge-foreground" x="50%-16" y="10" width="32" height="32" />
+    <text id="label" class="gauge-foreground" x="50%" y="100%-15" text-anchor="middle" text-length="8"/>
+    <rect class="gauge-foreground" x="0" y="100%-2" width="100%" height="2" />  <!-- graph baseline -->
   </symbol>
 </defs>
