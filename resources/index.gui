@@ -1,5 +1,5 @@
 <svg>
-  <use href="#gauge" id="fatBurnGauge" x="10" y="100" width="80" height="100"/>
-  <use href="#gauge" id="cardioGauge" x="110" y="100" width="80" height="100"/>
-  <use href="#gauge" id="peakGauge" x="210" y="100" width="80" height="100"/>
+  <use href="#gauge" id="energyGauge" x="10" y="100" width="80" height="100"/>
+  <use href="#gauge" id="heartGauge" x="110" y="100" width="80" height="100"/>
+  <use href="#gauge" id="stepsGauge" x="210" y="100" width="80" height="100"/>
 </svg>

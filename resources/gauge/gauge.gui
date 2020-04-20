@@ -1,12 +1,6 @@
 <defs>
-  <!--<mask id="metricMask">
-    <image id="metricMaskImg" x="0" y="0" width="48" height="48" href="3m.png" />
-  </mask>-->
-
   <symbol id="gauge">
-    <!--<svg id="maskedEl" mask="#metricMask">-->
     <rect id="achiev" x="2" width="50%-4" fill="#0000ff" />
-    <!--</svg>-->
     <rect id="goal" x="50%+2" y="0" width="50%-4" height="100%-2" fill="#808080" />
     <image id="icon" x="50%-16" y="10" width="32" height="32" fill="#ffffff"/>
     <text id="label" fill="#ffffff" x="50%" y="100%-15" text-anchor="middle" text-length="8"/>
