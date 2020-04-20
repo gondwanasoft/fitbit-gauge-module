@@ -7,7 +7,9 @@ function settingsComponent(props) {
             App Settings
           </Text>
         }
-      />
+      >
+        Some content
+      </Section>
     </Page>
   );
 }
